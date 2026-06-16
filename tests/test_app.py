@@ -35,7 +35,7 @@ def test_add_task_success(client):
     """Memastikan tugas baru berhasil ditambahkan dan diarahkan kembali ke halaman utama."""
     payload = {"title": "Membaca Dokumentasi Locust"}
     response = client.post('/add', data=payload, follow_redirects=True)
-    
+
     assert response.status_code == 200
     assert b"Membaca Dokumentasi Locust" in response.data
 
@@ -45,7 +45,7 @@ def test_add_task_empty_title(client):
     """Memastikan sistem menolak penambahan tugas dengan string kosong (Error 400)."""
     payload = {"title": "   "}  # Hanya berisi spasi
     response = client.post('/add', data=payload)
-    
+
     assert response.status_code == 400
     assert b"Judul tugas tidak boleh kosong!" in response.data
 
@@ -55,7 +55,7 @@ def test_update_task_success(client):
     """Memastikan status tugas dengan ID yang valid berubah menjadi 'Completed'."""
     response = client.post('/update/1', follow_redirects=True)
     assert response.status_code == 200
-    
+
     # Memeriksa perubahan status secara langsung pada data internal aplikasi
     from app import tasks
     assert tasks[0]["status"] == "Completed"
@@ -74,7 +74,7 @@ def test_delete_task_success(client):
     """Memastikan tugas dengan ID yang valid sukses dihapus dari daftar."""
     response = client.post('/delete/2', follow_redirects=True)
     assert response.status_code == 200
-    
+
     from app import tasks
     # Memastikan jumlah tugas berkurang menjadi 1 setelah ID 2 dihapus
     assert len(tasks) == 1
@@ -93,7 +93,7 @@ def test_get_tasks_api(client):
     """Memastikan endpoint API mengembalikan data berformat JSON dengan struktur yang tepat."""
     response = client.get('/api/tasks')
     assert response.status_code == 200
-    
+
     json_data = response.get_json()
     assert isinstance(json_data, list)
     assert len(json_data) == 2

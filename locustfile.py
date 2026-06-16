@@ -13,3 +13,4 @@ class TaskManagerUser(HttpUser):
     def view_tasks_api(self):
         """Menyimulasikan integrasi sistem atau fetch data JSON dari endpoint API."""
         self.client.get("/api/tasks")
+        

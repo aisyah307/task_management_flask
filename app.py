@@ -19,7 +19,7 @@ def index():
 def add_task():
     """Menambahkan tugas baru ke dalam daftar."""
     title = request.form.get("title")
-    
+
     # Skenario Gagal: Judul kosong atau hanya berisi spasi
     if not title or title.strip() == "":
         return "Judul tugas tidak boleh kosong!", 400
@@ -42,7 +42,7 @@ def update_task(task_id):
         if task["id"] == task_id:
             task["status"] = "Completed"
             return redirect("/")
-            
+
     # Skenario Gagal: ID tugas tidak ditemukan
     return "Tugas tidak ditemukan!", 404
 
@@ -52,7 +52,7 @@ def delete_task(task_id):
     """Menghapus tugas dari daftar berdasarkan ID."""
     global tasks
     task_exists = any(task["id"] == task_id for task in tasks)
-    
+
     # Skenario Gagal: ID tugas tidak ditemukan
     if not task_exists:
         return "Tugas tidak ditemukan!", 404
