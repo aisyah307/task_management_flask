@@ -1,0 +1,10 @@
+Flask==3.0.3
+pytest==8.2.2
+pytest-cov==5.0.0
+locust==2.29.0
+gevent==24.2.1
+# Mengunci versi aman untuk meloloskan gerbang pip-audit
+requests==2.32.3
+urllib3==2.2.2
+idna==3.7
+filelock==3.15.4
