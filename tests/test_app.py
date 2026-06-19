@@ -98,4 +98,3 @@ def test_get_tasks_api(client):
     assert isinstance(json_data, list)
     assert len(json_data) == 2
     assert json_data[0]["title"] == "Belajar Kualitas Perangkat Lunak"
-    
